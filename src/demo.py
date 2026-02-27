@@ -144,7 +144,7 @@ def seed_data(conn: sqlite3.Connection) -> None:
     conn.executemany("INSERT INTO assignments (title, max_points) VALUES (?, ?);", assignments)
 
     # Fetch IDs so we can seed grades with correct foreign keys
-    student_ids = {r["name"]: r["id"] for r in conn.execute("SELECT id, name FROM students;")}
+    student_ids = {r["name"]: r["id"] for r in conn.execute("SELECT id, name FROM students;")} # dict comprehension :)
     assignment_ids = {r["title"]: r["id"] for r in conn.execute("SELECT id, title FROM assignments;")}
     # Seed some grades (student_id, assignment_id, score)
     grades = [
